@@ -4,8 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Addschedule">
-
+    tools:context=".Editschedule">
     <EditText
         android:id="@+id/venue_edit_text"
         android:layout_width="0dp"
@@ -27,11 +26,11 @@
 
     <TextView
         android:id="@+id/Date_edit_text"
-        android:layout_width="202dp"
-        android:layout_height="18dp"
+        android:layout_width="236dp"
+        android:layout_height="17dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
-        android:layout_marginEnd="8dp"
         app:layout_constraintBottom_toTopOf="@+id/save_button"
         app:layout_constraintEnd_toEndOf="@+id/venue_edit_text"
         app:layout_constraintStart_toEndOf="@+id/Date_textView"

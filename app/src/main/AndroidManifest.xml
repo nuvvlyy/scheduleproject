@@ -16,8 +16,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".Model.Addschedule" />
-        <activity android:name=".ItemAppoi"></activity>
+        <activity android:name=".Addschedule" />
+        <activity android:name=".Model.ItemAppoi" />
+        <activity android:name=".Editschedule"></activity>
     </application>
 
 </manifest>
