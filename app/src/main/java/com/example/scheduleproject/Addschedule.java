@@ -107,7 +107,7 @@ public class Addschedule extends AppCompatActivity {
                 String title3 = title3EditText.getText().toString();
 
                 if(title2.length() ==0 || title3.length() ==0){
-                    Toast t = Toast.makeText(Addschedule.this, "กรุณากรอกข้อมูลกิจกรรม", Toast.LENGTH_SHORT);
+                    Toast t = Toast.makeText(Addschedule.this, "กรุณากรอกข้อมูลกิจกรรมให้ครบถ้วน", Toast.LENGTH_SHORT);
 
                     t.show();
                 }else{

@@ -84,7 +84,23 @@ public class MainActivity extends AppCompatActivity {
         );
         ListView lv = findViewById(R.id.result_list_view);
         lv.setAdapter(adapter);
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
 
+            @Override
+
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long l) {
+                ItemAppoi item = mAppoimentList.get(position);
+                String[] date = item.startDay.split("/");
+                String Month []= {"January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"};
+
+                new AlertDialog.Builder(MainActivity.this)
+                        .setMessage("place: "+item.venue+" date: "+date[0]+" "+Month[Integer.parseInt(date[1])-1]+" "+date[2])
+                        .setTitle(item.title)
+                        .setPositiveButton("ตกลง", null)
+                        .show();
+            }
+
+        });
         lv.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> adapterView, View view, final int position, long l) {

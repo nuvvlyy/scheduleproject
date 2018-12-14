@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.scheduleproject.database.DatabaseHelper;
 
@@ -57,14 +58,14 @@ public class Editschedule extends AppCompatActivity {
         mTitleEditText.setText(title);
         mVenueEditText.setText(venue);
         mstartDayEditText.setText(sDay);
-
+        final String []date = sDay.split("/");
         mstartDayEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Calendar cal = Calendar.getInstance();
-                int year = cal.get(Calendar.YEAR);
-                int month = cal.get(Calendar.MONTH);
-                int day = cal.get(Calendar.DAY_OF_MONTH);
+
+                int year = Integer.parseInt(date[2]);
+                int month = Integer.parseInt(date[1]);
+                int day = Integer.parseInt(date[0]);
 
                 DatePickerDialog dialog = new DatePickerDialog(
                         Editschedule.this, AlertDialog.THEME_DEVICE_DEFAULT_LIGHT,
@@ -109,24 +110,36 @@ public class Editschedule extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //todo: บันทึกข้อมูลใหม่ลง db
-                DatabaseHelper helper = new DatabaseHelper(Editschedule.this);
-                SQLiteDatabase db = helper.getWritableDatabase();
+                EditText title2EditText = findViewById(R.id.title_edit_text);
+                String title2 = title2EditText.getText().toString();
+                EditText title3EditText = findViewById(R.id.venue_edit_text);
+                String title3 = title3EditText.getText().toString();
 
-                String newTitle = mTitleEditText.getText().toString().trim();
-                String newVenue = mVenueEditText.getText().toString().trim();
-                String newsDay = mstartDayEditText.getText().toString().trim();
+                if(title2.length() ==0 || title3.length() ==0){
+                    Toast t = Toast.makeText(Editschedule.this, "กรุณากรอกข้อมูลกิจกรรมให้ครบถ้วน", Toast.LENGTH_SHORT);
 
-                ContentValues cv = new ContentValues();
-                cv.put(COL_TITLE, newTitle);
-                cv.put(COL_VENUE, newVenue);
-                cv.put(COL_DATE, newsDay);
-                db.update(
-                        TABLE_NAME,
-                        cv,
-                        COL_ID + " = ?",
-                        new String[]{String.valueOf(mId)}
-                );
-                finish();
+                    t.show();
+                }else{
+                    DatabaseHelper helper = new DatabaseHelper(Editschedule.this);
+                    SQLiteDatabase db = helper.getWritableDatabase();
+
+                    String newTitle = mTitleEditText.getText().toString().trim();
+                    String newVenue = mVenueEditText.getText().toString().trim();
+                    String newsDay = mstartDayEditText.getText().toString().trim();
+
+                    ContentValues cv = new ContentValues();
+                    cv.put(COL_TITLE, newTitle);
+                    cv.put(COL_VENUE, newVenue);
+                    cv.put(COL_DATE, newsDay);
+                    db.update(
+                            TABLE_NAME,
+                            cv,
+                            COL_ID + " = ?",
+                            new String[]{String.valueOf(mId)}
+                    );
+                    finish();
+                }
+
             }
         });
     }
