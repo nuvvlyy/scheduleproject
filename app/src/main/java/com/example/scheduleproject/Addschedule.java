@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.Calendar;
 
@@ -94,11 +95,25 @@ public class Addschedule extends AppCompatActivity {
             }
         };
 
+
+
         Button saveButton = findViewById(R.id.save_button);
         saveButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                doInsertPhoneItem();
+                EditText title2EditText = findViewById(R.id.title_edit_text);
+                String title2 = title2EditText.getText().toString();
+                EditText title3EditText = findViewById(R.id.venue_edit_text);
+                String title3 = title3EditText.getText().toString();
+
+                if(title2.length() ==0 || title3.length() ==0){
+                    Toast t = Toast.makeText(Addschedule.this, "กรุณากรอกข้อมูลกิจกรรม", Toast.LENGTH_SHORT);
+
+                    t.show();
+                }else{
+                    doInsertPhoneItem();
+                }
+
             }
         });
     }
