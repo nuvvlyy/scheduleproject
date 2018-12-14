@@ -27,16 +27,28 @@
 
     <TextView
         android:id="@+id/Date_edit_text"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginEnd="32dp"
+        android:layout_width="236dp"
+        android:layout_height="17dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/end_Date_edit_text"
+        app:layout_constraintEnd_toEndOf="@+id/venue_edit_text"
+        app:layout_constraintStart_toEndOf="@+id/Date_textView"
+        app:layout_constraintTop_toBottomOf="@+id/venue_edit_text" />
+
+    <TextView
+        android:id="@+id/end_Date_edit_text"
+        android:layout_width="237dp"
+        android:layout_height="21dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:layout_marginTop="16dp"
         app:layout_constraintBottom_toTopOf="@+id/save_button"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/venue_edit_text" />
+        app:layout_constraintEnd_toEndOf="@+id/Date_edit_text"
+        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintStart_toStartOf="@+id/Date_edit_text"
+        app:layout_constraintTop_toBottomOf="@+id/Date_edit_text" />
 
     <Button
         android:id="@+id/save_button"
@@ -52,7 +64,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Date_edit_text" />
+        app:layout_constraintTop_toBottomOf="@+id/end_Date_edit_text" />
 
     <EditText
         android:id="@+id/title_edit_text"
@@ -71,15 +83,32 @@
         app:layout_constraintVertical_chainStyle="packed" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/end_Date_textView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="8dp"
+        android:fontFamily="sans-serif"
+        android:text="วันสุดท้าย"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@+id/end_Date_edit_text"
+        app:layout_constraintEnd_toStartOf="@+id/end_Date_edit_text"
+        app:layout_constraintStart_toStartOf="@+id/Date_textView"
+        app:layout_constraintTop_toTopOf="@+id/end_Date_edit_text"
+        app:layout_constraintVertical_bias="1.0" />
+
+    <TextView
+        android:id="@+id/Date_textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="8dp"
-        android:text="วันที่"
+        android:layout_marginStart="8dp"
+        android:text="วันเริ่มต้น"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="@+id/Date_edit_text"
         app:layout_constraintStart_toStartOf="@+id/venue_edit_text"
-        app:layout_constraintTop_toTopOf="@+id/Date_edit_text" />
-
+        app:layout_constraintTop_toTopOf="@+id/Date_edit_text"
+        app:layout_constraintVertical_bias="0.0" />
     <!--<EditText-->
     <!--android:id="@+id/venue_edit_text"-->
     <!--android:layout_width="0dp"-->
