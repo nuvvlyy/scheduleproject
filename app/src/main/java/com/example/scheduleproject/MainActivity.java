@@ -1,18 +1,14 @@
-package com.example.scheduleproject.Model;
+package com.example.scheduleproject;
 
-import android.content.DialogInterface;
+
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.net.Uri;
 import android.os.Bundle;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
-import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
-import android.widget.Toast;
 
 
 import static com.example.scheduleproject.database.DatabaseHelper.COL_VENUE;
@@ -22,20 +18,23 @@ import static com.example.scheduleproject.database.DatabaseHelper.COL_TITLE;
 import static com.example.scheduleproject.database.DatabaseHelper.TABLE_NAME;
 import static com.example.scheduleproject.database.DatabaseHelper.COL_ID;
 
-import com.example.scheduleproject.R;
+import com.example.scheduleproject.Model.Addschedule;
 
-import com.example.scheduleproject.Model.AppoimentList;
-
+import com.example.scheduleproject.database.*;
 import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
+    private DatabaseHelper mHelper;
     private SQLiteDatabase mDb;
-   private List<AppoimentList> mAppoimentList;
+   private List<ItemAppoi> mAppoimentList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        mHelper = new DatabaseHelper(MainActivity.this);
+        mDb = mHelper.getWritableDatabase();
+
         Button addItemButton = findViewById(R.id.add_item_button);
         addItemButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,18 +46,18 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-}
-//    @Override
-//    protected void onStart() {
-//        super.onStart();
-//    }
-//    @Override
-//    protected void onResume() {
-//        super.onResume();
-//
-//        loadData();
-//       //    setupListView();
-//    }
+    }
+    @Override
+    protected void onStart() {
+        super.onStart();
+    }
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        loadData();
+        setupListView();
+    }
     private void loadData() {
         Cursor c = mDb.query(TABLE_NAME, null, null, null, null, null, null);
 
@@ -70,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
             String startDay = c.getString(c.getColumnIndex(COL_DATE));
             String endDay = c.getString(c.getColumnIndex(COL_ENDDATE));
 
-            AppoimentList item = new AppoimentList(id,title, venue,startDay, endDay);
+            ItemAppoi item = new ItemAppoi(id,title, venue,startDay, endDay);
             mAppoimentList.add(item);
         }
         c.close();
@@ -78,7 +77,7 @@ public class MainActivity extends AppCompatActivity {
     private void setupListView() {
         ListAdapter adapter = new ListAdapter(
                 MainActivity.this,
-                R.layout.activity_addschedule,
+                R.layout.item_appoi,
                 mAppoimentList
 
         );

@@ -1,4 +1,4 @@
-package com.example.scheduleproject.Model;
+package com.example.scheduleproject;
 
 import android.content.Context;
 import android.support.annotation.NonNull;
@@ -10,21 +10,22 @@ import android.widget.ArrayAdapter;
 
 import android.widget.TextView;
 
+import com.example.scheduleproject.ItemAppoi;
 import com.example.scheduleproject.R;
 
 import java.util.List;
 
-public class ListAdapter  extends ArrayAdapter<AppoimentList> {
+public class ListAdapter  extends ArrayAdapter<ItemAppoi> {
 
 
 
         private Context mContext;
         private int mResource;
-        private List<AppoimentList> mItemList;
+        private List<ItemAppoi> mItemList;
 
         public ListAdapter(@NonNull Context context,
                                 int resource,
-                                @NonNull List<AppoimentList> AppoimentList) {
+                                @NonNull List<ItemAppoi> AppoimentList) {
             super(context, resource,  AppoimentList);
             this.mContext = context;
             this.mResource = resource;
@@ -37,12 +38,12 @@ public class ListAdapter  extends ArrayAdapter<AppoimentList> {
             LayoutInflater inflater = (LayoutInflater) mContext.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             View view = inflater.inflate(mResource, parent, false);
 
-            TextView titleTextView = view.findViewById(R.id.title_edit_text);
-            TextView venueTextView = view.findViewById(R.id.venue_edit_text);
-            TextView startDayTextView = view.findViewById(R.id.Date_edit_text);
-            TextView endDayTextView = view.findViewById(R.id.end_Date_edit_text);
+            TextView titleTextView = view.findViewById(R.id.title_text_view);
+            TextView venueTextView = view.findViewById(R.id.venue_text_view);
+            TextView startDayTextView = view.findViewById(R.id.Date_text_view);
+           // TextView endDayTextView = view.findViewById(R.id.end_Date_edit_text);
 
-            AppoimentList Item = mItemList.get(position);
+            ItemAppoi Item = mItemList.get(position);
             String title = Item.title;
             String venue = Item.venue;
             String sDay =Item.startDay;
@@ -51,7 +52,7 @@ public class ListAdapter  extends ArrayAdapter<AppoimentList> {
             titleTextView.setText(title);
             venueTextView.setText(venue);
             startDayTextView.setText(sDay);
-            endDayTextView.setText(eDay);
+            //endDayTextView.setText(eDay);
 
 
             return view;

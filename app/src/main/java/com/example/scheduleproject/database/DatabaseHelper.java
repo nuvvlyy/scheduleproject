@@ -12,7 +12,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     private static final int DATABASE_VERSION = 1;
 
     public static final String TABLE_NAME = "myschedule";
-    public static final String COL_ID = "id";
+    public static final String COL_ID = "_id";
     public static final String COL_TITLE = "title";
     public static final String COL_VENUE = "venue";
     public static final String COL_DATE = "date";

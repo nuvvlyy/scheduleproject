@@ -23,12 +23,13 @@ import static com.example.scheduleproject.database.DatabaseHelper.COL_ENDDATE;
 import static com.example.scheduleproject.database.DatabaseHelper.COL_DATE;
 import static com.example.scheduleproject.database.DatabaseHelper.COL_TITLE;
 import static com.example.scheduleproject.database.DatabaseHelper.TABLE_NAME;
-
+import com.example.scheduleproject.database.DatabaseHelper;
 public class Addschedule extends AppCompatActivity {
 //.Model.Addschedule"
 
 
     private static final String TAG = "Addschedule";
+    private DatabaseHelper mHelper;
     private SQLiteDatabase mDb;
     private TextView mDisplayDate;
     private TextView mDisplayendDate;
@@ -54,6 +55,9 @@ public class Addschedule extends AppCompatActivity {
         sMonth = pMonth;
         sDay =pDay;
 
+        mHelper = new DatabaseHelper(this);
+        mDb = mHelper.getWritableDatabase();
+
         mDisplayDate.setText(pDay+"/"+(pMonth+1)+"/"+pYear);
         mDisplayendDate.setText(pDay+"/"+(pMonth+1)+"/"+pYear);
         mDisplayDate.setOnClickListener(new View.OnClickListener() {
@@ -69,7 +73,6 @@ public class Addschedule extends AppCompatActivity {
                         mDateSetListener,
                         year,month,day);
                 dialog.getWindow();
-                //.setBackgroundDrawable(new ColorDrawable(Color.rgb(255,255,255)));
                 dialog.show();
             }
         });
